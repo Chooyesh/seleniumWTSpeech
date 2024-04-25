@@ -20,7 +20,7 @@ public class TestData {
     @DataProvider(name = "loginData")
     public final Object[][] loginData() {
         return new String[][]{
-                {"ejao@ejao.ru", "ejao"}
+                {"email@email.ru", "user"}
         };
     }
 
@@ -41,6 +41,32 @@ public class TestData {
                 {"username?"},
                 {"username$123"},
                 {"Русскиебуквы"}
+        };
+    }
+
+    @DataProvider(name = "invalidPasswords")
+    public Object[][] getInvalidPasswords() {
+        return new Object[][] {
+                {"123456"},
+                {"password"},
+                {"P@ssw"},
+                {"password12345678901234567890"},
+                {"пароль123"},
+                {"!@#$%&*"},
+                {"1234abcd"}
+        };
+    }
+
+    @DataProvider(name = "goodDataToSignUp")
+    public Object[][] getGoodDataToRSignup() {
+        return new Object[][]{
+                {"user@email.ru", "user","user"}
+        };
+    }
+    @DataProvider(name = "alreadySignUp")
+    public Object[][] getAalreadySignUp() {
+        return new Object[][]{
+                {"email@email.ru", "user","user"}
         };
     }
 }

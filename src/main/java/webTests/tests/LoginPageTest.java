@@ -18,6 +18,7 @@ public class LoginPageTest {
     private LoginPage loginPage;
     private final String baseUrl = config.getBaseUrl(); //стартовый урл
     private final String loginPageURL = baseUrl + "/login"; //логин урл
+    private final String profilePageURl = baseUrl + "/profile"; //логин урл
 
     @BeforeClass
     public void setUp() {
@@ -46,7 +47,7 @@ public class LoginPageTest {
         loginPage.enterEmail(userLoginEmail);
         loginPage.enterPassword(password);
         loginPage.clickLoginButton();
-        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "profile", "Был отправлен email: " + userLoginEmail + " Пароль " + password);
+        Assert.assertEquals(driver.getCurrentUrl(), profilePageURl, "Был отправлен email: " + userLoginEmail + " Пароль " + password);
     }
 
     @Test(dataProvider = "wrongLoginData", dataProviderClass = TestData.class)
@@ -56,7 +57,7 @@ public class LoginPageTest {
         loginPage.enterEmail(userLoginEmail);
         loginPage.enterPassword(password);
         loginPage.clickLoginButton();
-        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "login", "Был отправлен email: " + userLoginEmail + " Пароль " + password);
+        Assert.assertEquals(driver.getCurrentUrl(), loginPageURL, "Был отправлен email: " + userLoginEmail + " Пароль " + password);
     }
 
 

@@ -1,6 +1,7 @@
 package webTests.pageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -70,6 +71,16 @@ public class RegisterPage {
     }
     public boolean isNameInputAccessible(){
         return driver.findElement(userNameInput).isEnabled();
+    }
+
+    public boolean isErrorMessageDisplayed(){
+        boolean disp = false;
+        try {
+            disp = driver.findElement(By.xpath("/html/body/section/div[2]/div/div/div/div")).isDisplayed();
+        }catch (NoSuchElementException e){
+
+        }
+        return disp;
     }
 
 }

@@ -9,6 +9,8 @@ import java.time.Duration;
 
 public class WebDriverInitializer {
 
+    Configuration config = new Configuration();
+
     public WebDriverWait initWebdriverWait (WebDriver driver){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000));
         return wait;
@@ -16,7 +18,7 @@ public class WebDriverInitializer {
     public WebDriver initWebDriver() {
         WebDriver driver;
         WebDriverWait wait;
-        System.setProperty("webdriver.chrome.driver", "D:\\Programming\\webdriver\\chromedriver.exe"); // путь к драйверу
+        System.setProperty("webdriver.chrome.driver", config.getPathToChromedriver()); // путь к драйверу
         ChromeOptions options = new ChromeOptions();
         //options.addArguments("--headless");
         options.addArguments("--disable-gpu");
@@ -24,7 +26,7 @@ public class WebDriverInitializer {
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--silent");
         options.addArguments("--remote-debugging-port=9222");
-        options.setBinary("D:\\Programming\\webdriver\\chrome-win64\\chrome.exe"); // путь  к браузеру
+        options.setBinary(config.getPathToChrome()); // путь  к браузеру
         driver = new ChromeDriver(options);
         return driver;
     }
